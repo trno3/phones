@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const { phonesList } = require('../controllers/phonesController');
+const { getPhonesList, getPhone } = require('../controllers/phonesController');
 
-router.get('/', phonesList);
+router.get('/', getPhonesList);
+
+router.get('/:id', getPhone);
 
 module.exports = router;
