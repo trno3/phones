@@ -1,0 +1,7 @@
+<ul *ngIf="phoneData | async as data; else loading">
+  <li *ngFor="let item of data">
+    <phone-item [data]="item"></phone-item>
+  </li>
+</ul>
+
+<ng-template #loading>Loading Data...</ng-template>

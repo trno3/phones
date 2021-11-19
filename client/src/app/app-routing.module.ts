@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PhonesComponent } from './phones/phonesList/phonesList.component';
+import { PhonesListComponent } from './components/phones/phonesList/phonesList.component';
 
 const routes: Routes = [
-  { path: '', component: PhonesComponent },
-  { path: '', component: PhonesComponent, pathMatch: 'full' },
-  { path: '**', component: PhonesComponent },
+  { path: '', component: PhonesListComponent, pathMatch: 'full' },
+  { path: '**', component: PhonesListComponent },
 ];
 
 @NgModule({

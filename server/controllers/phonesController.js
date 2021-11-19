@@ -13,7 +13,7 @@ const phonesList = (_req, res) => {
             ram: 2,
         },
         {
-            id: 0,
+            id: 1,
             name: 'iPhone 8',
             manufacturer: 'Apple',
             description: 'lorem ipsum dolor sit amet consectetur.',
