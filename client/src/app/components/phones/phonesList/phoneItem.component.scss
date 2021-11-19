@@ -1,0 +1,25 @@
+div.phone-item {
+  display: flex;
+  flex-direction: row;
+  background-color: beige;
+  border-radius: 8px;
+  box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgb(0 0 0 / 45%);
+
+  .phone-image {
+    padding: 0.5rem 1rem;
+    flex-grow: 0;
+    img {
+      object-fit: cover;
+      max-width: 100%;
+      max-height: 20rem;
+    }
+  }
+
+  .phone-info {
+    flex-grow: 5;
+  }
+
+  &:hover {
+    background-color: burlywood;
+  }
+}

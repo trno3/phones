@@ -1,5 +1,13 @@
-<div>
-  <h3>{{ data.name }}</h3>
-  <div>Fabricante: {{ data.manufacturer }}</div>
-  <div>Descripción: {{ data.description }}</div>
+<div class="phone-item">
+  <div class="phone-image">
+    <img
+      src="assets/images/{{ data.imageFileName }}"
+      alt="{{ data.imageFileName }}"
+    />
+  </div>
+  <div class="phone-info">
+    <h3>{{ data.name }}</h3>
+    <div>Fabricante: {{ data.manufacturer }}</div>
+    <div>Descripción: {{ data.description }}</div>
+  </div>
 </div>

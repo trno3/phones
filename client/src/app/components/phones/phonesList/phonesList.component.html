@@ -1,5 +1,5 @@
-<ul *ngIf="phoneData | async as data; else loading">
-  <li *ngFor="let item of data">
+<ul *ngIf="phoneData | async as data; else loading" class="phone-list">
+  <li *ngFor="let item of data" class="phone-card">
     <phone-item [data]="item"></phone-item>
   </li>
 </ul>
