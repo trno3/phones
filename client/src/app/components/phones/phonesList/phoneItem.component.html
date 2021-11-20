@@ -1,4 +1,4 @@
-<div class="phone-item">
+<a class="phone-item" [routerLink]="['/phonedetail/', data.id]">
   <div class="phone-image">
     <img
       src="assets/images/{{ data.imageFileName }}"
@@ -10,4 +10,4 @@
     <div>Fabricante: {{ data.manufacturer }}</div>
     <div>Descripción: {{ data.description }}</div>
   </div>
-</div>
+</a>
