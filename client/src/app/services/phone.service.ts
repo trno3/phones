@@ -11,4 +11,8 @@ export class PhoneService {
   getList(): Observable<Phone[]> {
     return this.httpClient.get<Phone[]>('/phones');
   }
+
+  getPhone(id: number): Observable<Phone> {
+    return this.httpClient.get<Phone>(`/phones/${id}`);
+  }
 }
