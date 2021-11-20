@@ -20,3 +20,8 @@ steps:
     npm install
     npm run build:pipeline
   displayName: 'npm install and build'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagindDirectory)/drop
