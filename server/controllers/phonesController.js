@@ -62,10 +62,10 @@ const getPhone = (req, res) => {
     } else {
         const phone = data.filter((item) => item.id === id);
 
-        if (phone.length === 0) {
+        if (phone.length !== 1) {
             idNotValid = true;
         } else {
-            res.send(JSON.stringify(phone));
+            res.send(JSON.stringify(phone[0]));
         }
     }
 
