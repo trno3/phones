@@ -15,4 +15,8 @@ export class PhoneService {
   getPhone(id: number): Observable<Phone> {
     return this.httpClient.get<Phone>(`/phones/${id}`);
   }
+
+  deletePhone(id: number): Observable<Phone> {
+    return this.httpClient.delete<Phone>(`/phones/${id}`);
+  }
 }
