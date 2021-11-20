@@ -1,0 +1,21 @@
+.navbar {
+  background-color: cornflowerblue;
+
+  .navbar-brand {
+    display: flex;
+
+    .navbar-item {
+      display: flex;
+      align-items: center;
+      margin: 0 1.5rem;
+      padding: 0.5rem 0;
+      cursor: pointer;
+
+      .navbar-brand-name {
+        margin-left: 2rem;
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+  }
+}
