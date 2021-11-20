@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
@@ -16,12 +16,15 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
 
   phoneData: Observable<Phone> = new Observable<Phone>();
   phoneDetailGroup: FormGroup = null!;
+  disabled: boolean = false;
 
+  private currentId: number = -1;
   private phoneDataSubscription: Subscription = null!;
 
   constructor(
     private phoneService: PhoneService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder
   ) {
     this.phoneId = +this.activatedRoute.snapshot.params['id'];
@@ -32,6 +35,7 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
 
     this.phoneDataSubscription = this.phoneData.subscribe((res: Phone) => {
       this.phoneDetailGroup.patchValue(res);
+      this.currentId = res.id!;
       this.setState(false);
     });
 
@@ -40,6 +44,16 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.phoneDataSubscription.unsubscribe();
+  }
+
+  editPhone(): void {}
+
+  deletePhone(): void {
+    this.disabled = true;
+    //TODO: unsubscribe
+    this.phoneService.deletePhone(this.currentId).subscribe((res) => {
+      this.router.navigateByUrl('/');
+    });
   }
 
   setState(enabled: boolean): void {

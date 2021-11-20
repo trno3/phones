@@ -1,3 +1,29 @@
+.phone-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.detail-delete-button {
+  margin: 1rem 2rem;
+  display: flex;
+  align-items: center;
+
+  span {
+    font-size: 24px;
+    font-weight: bold;
+    flex: 1 1 100px;
+  }
+
+  div {
+    button {
+      text-align: center;
+      margin-left: 2rem;
+      width: 6rem;
+      height: 2rem;
+    }
+  }
+}
+
 .phone-detail {
   display: flex;
   flex-wrap: wrap;
