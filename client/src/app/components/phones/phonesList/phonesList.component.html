@@ -1,7 +1,14 @@
-<ul *ngIf="phoneData | async as data; else loading" class="phone-list">
-  <li *ngFor="let item of data" class="phone-card">
-    <phone-item [data]="item"></phone-item>
-  </li>
-</ul>
+<div class="list-main" *ngIf="phoneData | async as data; else loading">
+  <div class="list-add-button-container">
+    <button>Add</button>
+  </div>
+
+  <ul class="phone-list">
+    <li *ngFor="let item of data" class="phone-card">
+      <phone-item [data]="item"></phone-item>
+    </li>
+  </ul>
+  <footer></footer>
+</div>
 
 <ng-template #loading><spinner></spinner></ng-template>
