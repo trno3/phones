@@ -16,7 +16,8 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
 
   phoneData: Observable<Phone> = new Observable<Phone>();
   phoneDetailGroup: FormGroup = null!;
-  disabled: boolean = false;
+  viewDisabled: boolean = false;
+  deleteButtonDisabled: boolean = false;
 
   private currentId: number = -1;
   private phoneDataSubscription: Subscription = null!;
@@ -46,10 +47,23 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
     this.phoneDataSubscription.unsubscribe();
   }
 
-  editPhone(): void {}
+  editPhone(): void {
+    this.deleteButtonDisabled = true;
+    this.setState(true);
+  }
+
+  onSubmit(data: Phone): void {
+    if (this.phoneDetailGroup.dirty) {
+      this.phoneService.updatePhone(data).subscribe((res) => {
+        this.router.navigateByUrl('/');
+      });
+    }
+
+    this.setState(false);
+  }
 
   deletePhone(): void {
-    this.disabled = true;
+    this.viewDisabled = true;
     //TODO: unsubscribe
     this.phoneService.deletePhone(this.currentId).subscribe((res) => {
       this.router.navigateByUrl('/');
@@ -60,8 +74,13 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
     enabled ? this.phoneDetailGroup.enable() : this.phoneDetailGroup.disable();
   }
 
+  editStateEnabled(): boolean {
+    return this.phoneDetailGroup.enabled;
+  }
+
   private createForm(): void {
     this.phoneDetailGroup = this.fb.group({
+      id: ['', Validators.required],
       name: ['', Validators.required],
       manufacturer: ['', Validators.required],
       color: ['', Validators.required],

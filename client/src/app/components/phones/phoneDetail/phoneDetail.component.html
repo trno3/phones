@@ -1,12 +1,14 @@
 <div
   *ngIf="phoneData | async as data; else loading"
-  [ngClass]="{ 'phone-disabled': disabled }"
+  [ngClass]="{ 'phone-disabled': viewDisabled }"
 >
   <div class="detail-delete-button">
     <span>{{ data.name }}</span>
     <div>
       <button (click)="editPhone()">Edit</button>
-      <button (click)="deletePhone()">Delete</button>
+      <button (click)="deletePhone()" [disabled]="deleteButtonDisabled">
+        Delete
+      </button>
     </div>
   </div>
   <div class="phone-detail">
@@ -17,14 +19,22 @@
       />
     </div>
     <div class="phone-detail-info">
-      <form [formGroup]="phoneDetailGroup" novalidate>
+      <form
+        [formGroup]="phoneDetailGroup"
+        novalidate
+        (ngSubmit)="onSubmit(phoneDetailGroup.value)"
+      >
         <div class="form-group">
-          <label>Nombre</label>
-          <input class="form-control" formControlName="name" />
+          <input class="form-control" formControlName="name" type="hidden" />
         </div>
 
         <div class="form-group">
-          <label>Fabricante</label>
+          <label>Name</label>
+          <input class="form-control" formControlName="name" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label>Manufacturer</label>
           <input
             class="form-control"
             formControlName="manufacturer"
@@ -33,7 +43,7 @@
         </div>
 
         <div class="form-group">
-          <label>Descripción</label>
+          <label>Description</label>
           <textarea
             class="form-control"
             formControlName="description"
@@ -47,23 +57,27 @@
         </div>
 
         <div class="form-group">
-          <label>Precio</label>
+          <label>Price</label>
           <input class="form-control" formControlName="price" type="number" />
         </div>
 
         <div class="form-group">
-          <label>Pantalla</label>
+          <label>Screen</label>
           <input class="form-control" formControlName="screen" type="text" />
         </div>
 
         <div class="form-group">
-          <label>Procesador</label>
+          <label>Processor</label>
           <input class="form-control" formControlName="processor" type="text" />
         </div>
 
         <div class="form-group">
           <label>Ram (Gigabytes)</label>
           <input class="form-control" formControlName="ram" type="number" />
+        </div>
+
+        <div class="form-group submit-button">
+          <button type="submit" [disabled]="!editStateEnabled()">Submit</button>
         </div>
       </form>
     </div>
