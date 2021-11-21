@@ -1,12 +1,14 @@
 .phone-item {
   display: flex;
-  background-color: beige;
+  background-color: #fafafa;
   border-radius: 8px;
   box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgb(0 0 0 / 45%);
+  transition: 0.2s;
 
   .phone-image {
     padding: 0.5rem 1rem;
     flex-grow: 0;
+
     img {
       object-fit: cover;
       max-width: 100%;
@@ -16,9 +18,21 @@
 
   .phone-info {
     flex-grow: 5;
+
+    .phone-data {
+      margin: 0.4rem 0.4rem 2rem 0.4rem;
+
+      &.phone-manufacturer {
+        font-size: 16px;
+      }
+
+      &.phone-description {
+        font-size: 14px;
+      }
+    }
   }
 
   &:hover {
-    background-color: burlywood;
+    background-color: lightblue;
   }
 }
