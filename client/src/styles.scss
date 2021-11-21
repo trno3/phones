@@ -16,4 +16,14 @@ button {
   color: white;
   font-size: 0.8rem;
   text-transform: uppercase;
+  text-decoration: none;
+
+  &[disabled] {
+    opacity: 0.3;
+  }
+
+  &:hover,
+  &:focus {
+    background: #0073ba;
+  }
 }
