@@ -39,6 +39,22 @@
     margin: 0 4rem;
     flex: 0 1 600px;
 
+    // .form-group {
+    //   input,
+    //   textarea {
+    //     background-color: green;
+    //   }
+    // }
+
+    // &.form-edit-mode {
+    //   .form-group {
+    //     input,
+    //     textarea {
+    //       background-color: light-gray;
+    //     }
+    //   }
+    // }
+
     .form-group {
       margin-bottom: 1.2rem;
 
@@ -47,13 +63,6 @@
         max-width: 100%;
         margin-bottom: 5px;
         font-weight: 700;
-      }
-
-      input,
-      textarea {
-        &:not(.ng-valid) {
-          background-color: #eee;
-        }
       }
 
       button {

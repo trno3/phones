@@ -6,6 +6,7 @@ import { PhonesListComponent } from './components/phones/phonesList/phonesList.c
 
 const routes: Routes = [
   { path: 'phonedetail/:id', component: PhoneDetailsComponent },
+  { path: 'phonedetail', component: PhoneDetailsComponent },
   { path: '', component: PhonesListComponent, pathMatch: 'full' },
   { path: '**', component: PhonesListComponent },
 ];

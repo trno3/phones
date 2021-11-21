@@ -6,6 +6,13 @@ const getIdFromRequest = (req) => {
     return isNaN(id) ? null : id;
 };
 
+const getNewId = () => {
+    const itemsList = db.phones.find();
+    const newId = Math.max(...itemsList.map((e) => e.id), 0);
+
+    return newId + 1;
+};
+
 const getPhonesList = (_req, res) => {
     const phones = db.phones.find();
 
@@ -75,10 +82,11 @@ const createPhone = (req, res) => {
     //TODO: verify data is correct
     const item = req.body;
     console.log('Adding new item: ', req.body);
+    item.id = getNewId();
 
-    // db.phones.save(item);
+    db.phones.save(item);
 
-    res.sendStatus(200);
+    res.send(JSON.stringify('OK'));
 };
 
 module.exports = {

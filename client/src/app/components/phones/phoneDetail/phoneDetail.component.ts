@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Observer, Subscription } from 'rxjs';
 
 import { PhoneService } from 'src/app/services/phone.service';
 import { Phone } from 'src/app/models/phone';
@@ -12,15 +12,14 @@ import { Phone } from 'src/app/models/phone';
   styleUrls: ['./phoneDetail.component.scss'],
 })
 export class PhoneDetailsComponent implements OnInit, OnDestroy {
-  phoneId: number = -1;
-
+  phoneId: number = null!;
   phoneData: Observable<Phone> = new Observable<Phone>();
   phoneDetailGroup: FormGroup = null!;
   viewDisabled: boolean = false;
-  deleteButtonDisabled: boolean = false;
+  creatingPhone: boolean = false;
 
-  private currentId: number = -1;
-  private phoneDataSubscription: Subscription = null!;
+  private phoneDataSubscription$: Subscription = null!;
+  private phone: Phone = new Phone();
 
   constructor(
     private phoneService: PhoneService,
@@ -28,35 +27,57 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.phoneId = +this.activatedRoute.snapshot.params['id'];
+    const id: string = this.activatedRoute.snapshot.params['id'];
+    this.phoneId = id ? +id : null!;
   }
 
   ngOnInit(): void {
-    this.phoneData = this.phoneService.getPhone(this.phoneId);
-
-    this.phoneDataSubscription = this.phoneData.subscribe((res: Phone) => {
-      this.phoneDetailGroup.patchValue(res);
-      this.currentId = res.id!;
-      this.setState(false);
-    });
-
     this.createForm();
+
+    if (this.phoneId !== null) {
+      this.phoneData = this.phoneService.getPhone(this.phoneId);
+
+      this.phoneDataSubscription$ = this.phoneData.subscribe((res: Phone) => {
+        this.phone = res;
+        this.phoneDetailGroup.patchValue(this.phone);
+        this.setState(false);
+      });
+    } else {
+      this.phoneData = new Observable((observer: Observer<Phone>) => {
+        observer.next(this.phone);
+        observer.complete();
+      });
+      this.phoneDetailGroup.setValue(this.phone);
+      this.creatingPhone = true;
+    }
   }
 
   ngOnDestroy(): void {
-    this.phoneDataSubscription.unsubscribe();
+    if (this.phoneDataSubscription$) {
+      this.phoneDataSubscription$.unsubscribe();
+    }
   }
 
   editPhone(): void {
-    this.deleteButtonDisabled = true;
     this.setState(true);
   }
 
   onSubmit(data: Phone): void {
     if (this.phoneDetailGroup.dirty) {
-      this.phoneService.updatePhone(data).subscribe((res) => {
-        this.router.navigateByUrl('/');
-      });
+      const modifiedPhone: Phone = {
+        ...this.phone,
+        ...this.phoneDetailGroup.value,
+      };
+
+      if (modifiedPhone.id !== null) {
+        this.phoneService.updatePhone(data).subscribe(() => {
+          this.onSaveCompleted();
+        });
+      } else {
+        this.phoneService.createPhone(data).subscribe(() => {
+          this.onSaveCompleted();
+        });
+      }
     }
 
     this.setState(false);
@@ -64,8 +85,8 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
 
   deletePhone(): void {
     this.viewDisabled = true;
-    //TODO: unsubscribe
-    this.phoneService.deletePhone(this.currentId).subscribe((res) => {
+
+    this.phoneService.deletePhone(this.phone.id!).subscribe((res) => {
       this.router.navigateByUrl('/');
     });
   }
@@ -76,6 +97,11 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
 
   editStateEnabled(): boolean {
     return this.phoneDetailGroup.enabled;
+  }
+
+  private onSaveCompleted(): void {
+    this.phoneDetailGroup.reset();
+    this.router.navigateByUrl('/');
   }
 
   private createForm(): void {
@@ -89,6 +115,7 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
       price: ['', Validators.required],
       ram: ['', Validators.required],
       processor: ['', Validators.required],
+      imageFileName: ['', Validators.required],
     });
   }
 }

@@ -4,13 +4,16 @@
 >
   <div class="detail-delete-button">
     <span>{{ data.name }}</span>
-    <div>
-      <button (click)="editPhone()">Edit</button>
-      <button (click)="deletePhone()" [disabled]="deleteButtonDisabled">
+    <div *ngIf="!creatingPhone">
+      <button (click)="editPhone()" [disabled]="editStateEnabled()">
+        Edit
+      </button>
+      <button (click)="deletePhone()" [disabled]="editStateEnabled()">
         Delete
       </button>
     </div>
   </div>
+
   <div class="phone-detail">
     <div class="phone-detail-image">
       <img
@@ -18,7 +21,10 @@
         alt="{{ data.imageFileName }}"
       />
     </div>
-    <div class="phone-detail-info">
+    <div
+      class="phone-detail-info"
+      [ngClass]="{ 'form-edit-mode': editStateEnabled() }"
+    >
       <form
         [formGroup]="phoneDetailGroup"
         novalidate
@@ -69,6 +75,15 @@
         <div class="form-group">
           <label>Processor</label>
           <input class="form-control" formControlName="processor" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label>Image</label>
+          <input
+            class="form-control"
+            formControlName="imageFileName"
+            type="text"
+          />
         </div>
 
         <div class="form-group">

@@ -25,4 +25,12 @@ export class PhoneService {
 
     return this.httpClient.put<Phone>(`/phones/${data.id}`, data, { headers });
   }
+
+  createPhone(data: Phone): Observable<Phone> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    data.id = undefined;
+
+    return this.httpClient.post<Phone>(`/phones/`, data, { headers });
+  }
 }
