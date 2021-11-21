@@ -9,15 +9,21 @@ export class PhoneService {
   constructor(private httpClient: HttpClient) {}
 
   getList(): Observable<Phone[]> {
-    return this.httpClient.get<Phone[]>('/phones');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.httpClient.get<Phone[]>('/phones', { headers });
   }
 
   getPhone(id: number): Observable<Phone> {
-    return this.httpClient.get<Phone>(`/phones/${id}`);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.httpClient.get<Phone>(`/phones/${id}`, { headers });
   }
 
   deletePhone(id: number): Observable<Phone> {
-    return this.httpClient.delete<Phone>(`/phones/${id}`);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.httpClient.delete<Phone>(`/phones/${id}`, { headers });
   }
 
   updatePhone(data: Phone): Observable<Phone> {
