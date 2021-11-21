@@ -6,7 +6,10 @@
     "scripts": {
         "start": "cd server && npm start",
         "start:dev": "cd client && npm start",
-        "build": "cd client && npm run build",
+        "install:packages": "npm run install:client:packages && npm run install:server:packages",
+        "install:client:packages": "cd client && npm i",
+        "install:server:packages": "cd server && npm i",
+        "build": "cd client && npm i && npm run build",
         "build:pipeline": "cd client && npm i && npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
