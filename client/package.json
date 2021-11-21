@@ -36,6 +36,7 @@
     "karma-jasmine-html-reporter": "~1.7.0",
     "ng-mocks": "^12.5.0",
     "testdouble": "^3.16.3",
+    "testdouble-jasmine": "^0.2.1",
     "typescript": "~4.3.5"
   }
 }
