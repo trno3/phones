@@ -4,6 +4,9 @@
 
 This a simple example of showing a list of phones, with the information taken from the server. Also, some basic CRUD functionality implemented.
 
+The app main view show a card list of mobile phones that are stored into the db. It's possible to add a new phone clicking in the ADD button.
+Clicking on each card, navigates to the details view where you can edit or delete the current selected phone.
+
 ### Libraries used
 
 This has been created using Angular for the frontend and NodeJS for the bakend, using Express for the server and the REST api.
