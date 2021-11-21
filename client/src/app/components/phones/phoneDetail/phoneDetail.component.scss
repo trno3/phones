@@ -22,6 +22,15 @@
       height: 2rem;
     }
   }
+
+  @media only screen and (max-width: 700px) {
+    div {
+      button {
+        margin-left: 1rem;
+        width: 4rem;
+      }
+    }
+  }
 }
 
 .phone-detail {
@@ -33,11 +42,15 @@
   .phone-detail-image {
     margin: 0 4rem;
     flex: 0 1 auto;
+
+    img {
+      width: 100%;
+    }
   }
 
   .phone-detail-info {
     margin: 0 4rem;
-    flex: 0 1 600px;
+    flex: 0 1 400px;
 
     &.form-edit-mode {
       input,
@@ -62,9 +75,9 @@
       }
 
       .form-control {
-        display: block;
+        // display: block;
         width: 100%;
-        padding: 6px 12px;
+        padding: 0.3rem 0.3rem;
         font-size: 14px;
         line-height: 1.42857143;
         color: #555;
