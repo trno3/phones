@@ -8,3 +8,12 @@ a {
   color: initial;
   text-decoration: none; /* no underline */
 }
+
+button {
+  border: 0;
+  background-color: #008cba;
+  border-radius: 0.4rem;
+  color: white;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
