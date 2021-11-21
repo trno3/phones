@@ -3,7 +3,7 @@ const db = require('diskdb');
 const phonesRoutes = require('./routes/phonesRouter');
 const path = require('path');
 
-db.connect('./server/data', ['phones.json']);
+db.connect('./data', ['phones.json']);
 const PORT = process.env.PORT || 3001;
 
 const app = express();
