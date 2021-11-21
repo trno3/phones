@@ -2,9 +2,12 @@
 
 ### About the project
 
-This a simple example of showing a list of phones. Also, you can edit, create and delete them.
+This a simple example of showing a list of phones, with the information taken from the server. Also, some basic CRUD functionality implemented.
+
+### Libraries used
 
 This has been created using Angular for the frontend and NodeJS for the bakend, using Express for the server and the REST api.
+For the tests, ng-mocks and testdouble have been used for mocking.
 
 ### Features
 
@@ -31,3 +34,7 @@ This has been created using Angular for the frontend and NodeJS for the bakend, 
 4. Open the localhost using the port 3001
 
 -   `http://localhost:3001`
+
+5. To execute the tests, use
+
+-   `npm test`
