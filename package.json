@@ -4,22 +4,12 @@
     "description": "Phones list demo",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon server/index.js",
+        "start": "cd server && npm start",
         "start:dev": "cd client && npm start",
         "build": "cd client && npm run build",
         "build:pipeline": "cd client && npm i && npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Toni Hervas",
-    "license": "ISC",
-    "dependencies": {
-        "diskdb": "^0.1.17",
-        "express": "^4.17.1",
-        "nodemon": "^2.0.15"
-    },
-    "nodemonConfig": {
-        "ignore": [
-            "data/*"
-        ]
-    }
+    "license": "ISC"
 }

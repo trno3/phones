@@ -1,0 +1,23 @@
+{
+    "name": "phones_server",
+    "version": "0.0.1",
+    "description": "Phones list demo backed",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js"
+    },
+    "author": "Toni Hervas",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    },
+    "dependencies": {
+        "diskdb": "^0.1.17",
+        "express": "^4.17.1"
+    },
+    "nodemonConfig": {
+        "ignore": [
+            "data/*"
+        ]
+    }
+}
