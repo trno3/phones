@@ -1,4 +1,4 @@
-export interface Phone {
+export class Phone {
   id?: number;
   name?: string;
   manufacturer?: string;
@@ -9,4 +9,17 @@ export interface Phone {
   screen?: string;
   processor?: string;
   ram?: number;
+
+  constructor() {
+    this.id = null!;
+    this.name = '';
+    this.manufacturer = '';
+    this.description = '';
+    this.color = '';
+    this.price = 0;
+    this.imageFileName = 'IPhone_7.png';
+    this.screen = '';
+    this.processor = '';
+    this.ram = 0;
+  }
 }
