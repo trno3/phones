@@ -53,15 +53,17 @@ const removePhone = (req, res) => {
 };
 
 const updatePhone = (req, res) => {
+    console.log('Updating item: ');
     const id = getIdFromRequest(req);
     const item = req.body;
     let idNotValid = false;
 
-    if (!id) {
+    if (id === null) {
         idNotValid = true;
     } else {
         //TODO: not looking if the phone already exists
         db.phones.update({ id }, item);
+        res.send(JSON.stringify('OK'));
     }
 
     if (idNotValid) {

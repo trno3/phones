@@ -7,7 +7,7 @@ db.connect('./server/data', ['phones.json']);
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-
+app.use(express.json());
 app.use('/phones', phonesRoutes);
 
 app.use(express.static(path.join(__dirname, 'dist/client')));
