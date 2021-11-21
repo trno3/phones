@@ -1,10 +1,10 @@
 # The phones gallery
 
-###About the project
+### About the project
 
 This a simple example of showing a list of phones. Also, you can edit, create and delete them.
 
-This has been created using Angular and NodeJS
+This has been created using Angular for the frontend and NodeJS for the bakend, using Express for the server and the REST api.
 
 ### Features
 
@@ -17,13 +17,13 @@ This has been created using Angular and NodeJS
 
 First, you have to install the dependency packages and then compile the Angular app using in the root of the project:
 
-npm run install:packages
-npm run build
+`npm run install:packages`
+`npm run build`
 
 Next, you can run the application using
 
-npm start
+`npm start`
 
 Finally, you open the localhost using the port 3001
 
-http://localhost:3001
+`http://localhost:3001`
