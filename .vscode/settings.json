@@ -1,0 +1,5 @@
+{
+    "appService.zipIgnorePattern": [".vscode{,/**}"],
+    "appService.defaultWebAppToDeploy": "/subscriptions/161316f8-a5fd-4d11-973e-1b1efc2addc2/resourceGroups/devtest/providers/Microsoft.Web/sites/phonerun",
+    "appService.deploySubpath": "server"
+}
