@@ -13,17 +13,21 @@ This has been created using Angular for the frontend and NodeJS for the bakend, 
 -   CRUD
 -   Data persistence using diskdb
 
-### How to run the demo
+### Getting startend
 
-First, you have to install the dependency packages and then compile the Angular app using in the root of the project:
+1. Clone the repo
 
-`npm run install:packages`
-`npm run build`
+-   `git clone https://github.com/trno3/phones.git`
 
-Next, you can run the application using
+2. Install the dependency packages and then compile the Angular app using in the root of the project:
 
-`npm start`
+-   `npm run install:packages`
+-   `npm run build`
 
-Finally, you open the localhost using the port 3001
+3. Run the application using
 
-`http://localhost:3001`
+-   `npm start`
+
+4. Open the localhost using the port 3001
+
+-   `http://localhost:3001`
